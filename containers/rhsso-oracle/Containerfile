@@ -18,4 +18,4 @@ RUN curl -L -o /tmp/ojdbc8.tar.gz "$OJDBC_DOWNLOAD" ;\
 #  mv $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc8.jar $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc.jar
 
 # Add Wildfly CLI batch file...
-COPY sso-extensions.cli /opt/eap/extensions/
+#COPY sso-extensions.cli /opt/eap/extensions/
