@@ -1,0 +1,21 @@
+# RHSSO with Oracle JDBC drivers
+FROM registry.redhat.io/rh-sso-7/sso75-openshift-rhel8:latest
+
+LABEL name="RH SSO Oracle"
+LABEL description="RH SSO Image with Oracle JDBC drivers"
+
+# Download Location for Oracle JDBC drivers for OracleDB 19c
+ENV OJDBC_DOWNLOAD https://download.oracle.com/otn-pub/otn_software/jdbc/1913-IAM/ojdbc8-full.tar.gz
+
+# Download Oracle JDBC Drivers
+RUN curl -L -o /tmp/ojdbc8.tar.gz "$OJDBC_DOWNLOAD" ;\
+  mkdir -p /opt/eap/extensions ;\
+  tar -zxvf /tmp/ojdbc8.tar.gz -C /opt/eap/extensions ojdbc8-full/ojdbc8.jar --strip-components 1
+
+# Different model, not using Wildfly CLI to install 
+#  mkdir -p $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ ;\
+#  tar -zxvf /tmp/ojdbc8.tar.gz -C $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver ojdbc8-full/ojdbc8.jar --strip-components 1 ;\
+#  mv $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc8.jar $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc.jar
+
+# Add Wildfly CLI batch file...
+COPY sso-extensions.cli /opt/eap/extensions/
