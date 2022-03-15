@@ -12,6 +12,10 @@ RUN curl -L -o /tmp/ojdbc8.tar.gz "$OJDBC_DOWNLOAD" ;\
   mkdir -p /opt/eap/extensions ;\
   tar -zxvf /tmp/ojdbc8.tar.gz -C /opt/eap/extensions ojdbc8-full/ojdbc8.jar --strip-components 1
 
+# Add some debug tools...
+RUN microdnf --setopt=tsflags=nodocs install -y ping telnet-client ;\
+  microdnf clean all && [ ! -d /var/cache/yum ] || rm -rf /var/cache/yum
+
 # Different model, not using Wildfly CLI to install 
 #  mkdir -p $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ ;\
 #  tar -zxvf /tmp/ojdbc8.tar.gz -C $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver ojdbc8-full/ojdbc8.jar --strip-components 1 ;\
