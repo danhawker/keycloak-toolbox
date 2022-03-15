@@ -12,18 +12,6 @@ RUN curl -L -o /tmp/ojdbc8.tar.gz "$OJDBC_DOWNLOAD" ;\
   mkdir -p /opt/eap/extensions ;\
   tar -zxvf /tmp/ojdbc8.tar.gz -C /opt/eap/extensions ojdbc8-full/ojdbc8.jar --strip-components 1
 
-# Add some debug tools...
-#USER root
-#RUN microdnf --setopt=tsflags=nodocs install -y iputils socat telnet ;\
-#  microdnf clean all && [ ! -d /var/cache/yum ] || rm -rf /var/cache/yum
-
-# Go back to the JBoss User
-#USER 185
-
-# Different model, not using Wildfly CLI to install 
-#  mkdir -p $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ ;\
-#  tar -zxvf /tmp/ojdbc8.tar.gz -C $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver ojdbc8-full/ojdbc8.jar --strip-components 1 ;\
-#  mv $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc8.jar $JBOSS_HOME/modules/system/layers/base/com/oracle/jdbc/main/driver/ojdbc.jar
-
 # Add Wildfly CLI batch file...
-COPY sso-extensions.cli /opt/eap/extensions/
+# Now adding as a ConfigMap, so don't add here
+#COPY sso-extensions.cli /opt/eap/extensions/

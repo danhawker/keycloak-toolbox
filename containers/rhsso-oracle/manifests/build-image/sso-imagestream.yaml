@@ -1,0 +1,14 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: rhsso75-oracle
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - name: "7.5"
+    from:
+      kind: DockerImage
+      name: registry.redhat.io/rh-sso-7/sso75-openshift-rhel8:7.5
+    referencePolicy:
+      type: Source

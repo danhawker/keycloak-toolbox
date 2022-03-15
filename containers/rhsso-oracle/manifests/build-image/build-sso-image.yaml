@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: rhsso-oracle
+  labels:
+    app: rhsso
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/danhawker/keycloak-toolbox
+    contextDir: containers/rhsso-oracle
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Containerfile    # Look for Containerfile in: gitUri/contextDir/dockerfilePath
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rhsso75-oracle:latest
