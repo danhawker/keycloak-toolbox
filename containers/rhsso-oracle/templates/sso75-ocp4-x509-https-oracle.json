@@ -66,30 +66,24 @@
             "description": "DB Vendor for the configured datasource.",
             "name": "DB_VENDOR",
             "value": "oracle",
+            "required": false
+        },
+        {
+            "displayName": "DB Username",
+            "description": "DB Username of configured datasource.",
+            "name": "DB_USERNAME",
             "required": true
         },
         {
-            "displayName": "Oracle Service Host",
-            "description": "Oracle Service Host of configured datasource.",
-            "name": "ORACLE_SERVICE_HOST",
+            "displayName": "DB Password",
+            "description": "DB Password of configured datasource.",
+            "name": "DB_PASSWORD",
             "required": true
         },
         {
-            "displayName": "Oracle Service Name",
-            "description": "Oracle Service Name of configured datasource.",
-            "name": "ORACLE_SERVICE_NAME",
-            "required": true
-        },
-        {
-            "displayName": "Oracle Username",
-            "description": "Oracle Username of configured datasource.",
-            "name": "ORACLE_USERNAME",
-            "required": true
-        },
-        {
-            "displayName": "Oracle Password",
-            "description": "Oracle Password of configured datasource.",
-            "name": "ORACLE_PASSWORD",
+            "displayName": "JDBC URL",
+            "description": "JDBC URL of configured datasource.",
+            "name": "DB_JDBC_URL",
             "required": true
         },
         {
@@ -314,7 +308,8 @@
                                             "/opt/eap/bin/livenessProbe.sh"
                                         ]
                                     },
-                                    "initialDelaySeconds": 60
+                                    "initialDelaySeconds": 60,
+                                    "failureThreshold": 6
                                 },
                                 "readinessProbe": {
                                     "exec": {
@@ -409,20 +404,16 @@
                                         "value": "${DB_VENDOR}"
                                     },
                                     {
-                                        "name": "ORACLE_SERVICE_HOST",
-                                        "value": "${ORACLE_SERVICE_HOST}"
+                                        "name": "DB_JDBC_URL",
+                                        "value": "${DB_JDBC_URL}"
                                     },
                                     {
-                                        "name": "ORACLE_SERVICE_NAME",
-                                        "value": "${ORACLE_SERVICE_NAME}"
+                                        "name": "DB_USERNAME",
+                                        "value": "${DB_USERNAME}"
                                     },
                                     {
-                                        "name": "ORACLE_USERNAME",
-                                        "value": "${ORACLE_USERNAME}"
-                                    },
-                                    {
-                                        "name": "ORACLE_PASSWORD",
-                                        "value": "${ORACLE_PASSWORD}"
+                                        "name": "DB_PASSWORD",
+                                        "value": "${DB_PASSWORD}"
                                     }
                                 ]
                             }

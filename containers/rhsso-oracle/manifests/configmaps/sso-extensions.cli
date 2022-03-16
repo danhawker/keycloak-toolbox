@@ -1,11 +1,11 @@
 batch
 
 set DB_DRIVER_NAME=oracle
-set DB_USERNAME=username
-set DB_PASSWORD=password
+set DB_USERNAME=${env.DB_USERNAME}
+set DB_PASSWORD=${env.DB_PASSWORD}
 set DB_DRIVER=oracle.jdbc.driver.OracleDriver
 set DB_XA_DRIVER=oracle.jdbc.xa.client.OracleXADataSource
-set DB_JDBC_URL=jdbc:oracle:thin:@oracleinstance:1521/keycloak
+set DB_JDBC_URL=${env.DB_JDBC_URL}
 set DB_EAP_MODULE=com.oracle
 
 set FILE=/opt/eap/extensions/ojdbc8.jar
