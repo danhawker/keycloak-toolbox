@@ -1,0 +1,36 @@
+FROM registry.access.redhat.com/ubi8/ubi-minimal as builder
+
+## This directory contains the installation files for the FULL luna client
+COPY lunasrc lunasrc
+
+RUN microdnf install -y \
+    gcc \
+    gcc-c++ \
+    openssh-clients \
+    bind-utils \
+    iputils \
+    && cd lunasrc && \
+    # NOTE we are accepting the license for installing luna client here
+    # please take a look at the license before moving forward
+    # We're also putting the luna client files in /opt
+    echo "y" | ./install.sh -p sa -c all -install_directory /opt
+
+### Final image ###
+
+FROM registry.access.redhat.com/ubi8/ubi-minimal
+
+# Copy binaries from the builder
+COPY --from=builder /opt/safenet/lunaclient /opt/safenet/lunaclient
+
+# Copy the library files from builder
+COPY --from=builder /usr/lib/libCryptoki2_64.so /usr/lib/libCryptoki2_64.so
+COPY --from=builder /usr/lib/libCryptoki2_64.so.2 /usr/lib/libCryptoki2_64.so.2
+COPY --from=builder /usr/lib/libCryptoki2_64.so.7.11.1 /usr/lib/libCryptoki2_64.so.7.11.1
+
+# Add templated Chrystoki.conf
+ADD config/Chrystoki.conf /etc/
+# Add connect2HSM.sh (shell script to initiate connection to HSM)
+ADD --chmod=755 connect2HSM.sh /opt/safenet/
+
+#ENTRYPOINT  /bin/bash
+CMD [ "/opt/safenet/connect2HSM.sh" ]

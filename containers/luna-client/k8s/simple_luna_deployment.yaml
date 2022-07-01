@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: luna-client
+  labels:
+    app: luna-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: luna-client
+  template:
+    metadata:
+        labels:
+          app: luna-client
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: luna-client
+        image: luna-client:latest
+        volumeMounts:
+        - name: luna-config
+          mountPath: /tmp/Chrystoki.conf
+          subPath: Chrystoki.conf
+        env:
+        - name: ChrystokiConfigurationPath
+          value: "/tmp/Chrystoki.conf"
+      volumes:
+        - name: luna-config
+          configMap:
+            name: luna-config
