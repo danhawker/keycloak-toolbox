@@ -7,7 +7,7 @@ Experimental init container to enable a Kubernetes Pod to connect to a Thales/Sa
 :warning: You will need to provide the Luna client to build this container image. Download from Thales and extract to the lunasrc directory.
 
 ```
-$ podman build -it . -t luna-init:<tag_name>
+$ podman build . -t luna-init:<tag_name>
 ```
 
 I usually tag based on the Luna client version used, eg 7.11
