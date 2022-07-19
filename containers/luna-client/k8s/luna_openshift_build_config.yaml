@@ -1,0 +1,18 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: luna-client-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/danhawker/keycloak-toolbox
+    contextDir: containers/luna-client
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Containerfile    # Look for Containerfile in: gitUri/contextDir/dockerfilePath
+  output:
+    to:
+      kind: ImageStreamTag
+      name: luna-client:latest
