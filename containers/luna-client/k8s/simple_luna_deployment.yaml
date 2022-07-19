@@ -25,6 +25,13 @@ spec:
         env:
         - name: ChrystokiConfigurationPath
           value: "/tmp/Chrystoki.conf"
+        readinessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/Chrystoki.conf
+          initialDelaySeconds: 5
+          periodSeconds: 10
       volumes:
         - name: luna-config
           configMap:
