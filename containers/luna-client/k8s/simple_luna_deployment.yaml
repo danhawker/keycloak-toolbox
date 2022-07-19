@@ -18,6 +18,10 @@ spec:
       containers:
       - name: luna-client
         image: luna-client:latest
+        command:
+            - sh
+            - '-c'
+            - while true; do cat /tmp/Chrystoki.conf; sleep 30; done
         volumeMounts:
         - name: luna-config
           mountPath: /tmp/Chrystoki.conf
