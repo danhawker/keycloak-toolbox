@@ -1,0 +1,9 @@
+- op: replace
+  path: /metadata/name
+  value: keycloak-system
+- op: add
+  path: "/metadata/annotations/openshift.io~1display-name"
+  value: 'System Keycloak'
+- op: add
+  path: "/metadata/annotations/openshift.io~1description"
+  value: "Main Keycloak instance for Gaia"

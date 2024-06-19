@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: keycloak-og
+  namespace: patch_here
+spec:
+  targetNamespaces:
+  - patch_here

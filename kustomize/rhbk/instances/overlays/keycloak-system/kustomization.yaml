@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+patches:
+- path: patch-instance-cr.yaml
+  target:
+    group: k8s.keycloak.org
+    kind: Keycloak
+    name: keycloak
+    version: v2alpha1

@@ -1,0 +1,33 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+namespace: keycloak-system
+
+generatorOptions:
+  labels:
+    component: postgres
+    app: keycloak-system
+
+patches:
+- path: patch-postgres-statefulset.yaml
+  target:
+    group: apps
+    kind: StatefulSet
+    name: postgres
+    version: v1
+- path: patch-postgres-pvc.yaml
+  target:
+    group: ""
+    kind: PersistentVolumeClaim
+    name: postgres-data-pvc
+    version: v1
+
+secretGenerator:
+- name: postgres-db-creds
+  behavior: replace
+  literals:
+  - admin-user=postgres
+  - admin-password=rhbkpassword

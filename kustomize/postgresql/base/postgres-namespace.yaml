@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: postgres-base
+#  annotations:
+#    openshift.io/display-name: 'PostgreSQL'
+#    openshift.io/description: "Simple PostgreSQL DB Namespace"

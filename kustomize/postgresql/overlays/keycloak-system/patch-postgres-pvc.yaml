@@ -1,0 +1,7 @@
+- op: replace
+  path: /spec/resources/requests/storage
+  value: 5G
+# Use local NVMe storageClass
+#- op: add
+#  path: /spec/storageClassName
+#  value: lvms-vg-nvme

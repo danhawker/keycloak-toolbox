@@ -1,0 +1,21 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: keycloak-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  labels:
+    app: rhbk
+spec:
+  http:
+    httpEnabled: true
+  hostname:
+    hostname: keycloak.apps.ocp.example.com
+    strict: false
+    adminUrl: https://keycloak.apps.ocp.example.com
+  instances: 1
+  ingress:
+    enabled: true
+    className: openshift-default

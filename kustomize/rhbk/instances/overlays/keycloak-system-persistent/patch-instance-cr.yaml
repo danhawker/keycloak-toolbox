@@ -1,0 +1,9 @@
+- op: replace
+  path: /metadata/name
+  value: keycloak-system
+- op: replace
+  path: /metadata/labels/app
+  value: keycloak-system
+- op: add
+  path: /metadata/namespace
+  value: keycloak-system
