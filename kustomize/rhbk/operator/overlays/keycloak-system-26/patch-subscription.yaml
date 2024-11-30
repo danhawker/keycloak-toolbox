@@ -1,0 +1,9 @@
+- op: replace
+  path: /metadata/namespace
+  value: keycloak-system
+- op: replace
+  path: /spec/channel
+  value: stable-v26
+- op: replace
+  path: /spec/startingCSV
+  value: rhbk-operator.v26.0.6-opr.1

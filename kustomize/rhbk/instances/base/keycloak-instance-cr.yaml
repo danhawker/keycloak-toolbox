@@ -12,9 +12,9 @@ spec:
   http:
     httpEnabled: true
   hostname:
-    hostname: keycloak.apps.ocp.example.com
+    hostname: https://keycloak.apps.ocp.example.com
     strict: false
-    adminUrl: https://keycloak.apps.ocp.example.com
+    admin: https://keycloak.apps.ocp.example.com
   instances: 1
   ingress:
     enabled: true
