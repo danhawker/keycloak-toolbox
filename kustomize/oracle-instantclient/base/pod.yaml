@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: instantclient21
+spec:
+  containers:
+  - name: instantclient21
+    image: ghcr.io/oracle/oraclelinux8-instantclient:21

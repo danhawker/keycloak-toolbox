@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instantclient21
+spec:
+  selector:
+    matchLabels:
+      app: instantclient
+  template:
+    metadata:
+      labels:
+        app: instantclient
+    spec:
+      containers:
+        - name: instantclient
+          image: ghcr.io/oracle/oraclelinux8-instantclient:21

@@ -15,4 +15,9 @@ Container build using a standard RHSSO 7.x container as base, but overlaying the
 
 Quick example of deploying Red Hat Build of Keycloak (RHBK) to OpenShift using the RHBK Operator, using kustomize manifests. A ephemeral and a persistent version is enclosed, with an additional manifest for a persistent PostgreSQL deployment for the latter.
 
+### 389ds
+
+In addition there is a series of kustomize manifests to deploy 389 Directory Server to Kubernetes/OpenShift. If you need a quick and easy LDAP server to be used as an external User datastore for Keycloak, 389ds is an excellent choice. Persistent and non-persistent overlays are available.
+
+
 

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: doorman-oracle
+  annotations:
+    openshift.io/display-name: 'Doorman with OracleDB'
+    openshift.io/description: "RHSSO Testing with OracleDB Backend"
