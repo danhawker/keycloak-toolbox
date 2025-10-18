@@ -1,0 +1,6 @@
+- op: replace
+  path: /metadata/namespace
+  value: keycloak-system
+- op: replace
+  path: /spec/targetNamespaces/0
+  value: keycloak-system

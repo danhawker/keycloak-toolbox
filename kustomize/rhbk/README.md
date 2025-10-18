@@ -18,10 +18,10 @@ This example creates and deploys the RHBK operator, RHBK itself and optionally a
 
 The Operator needs installing first.
 
-An overlay is provided to to deploy the RHBK Operator, targeting version 24.
+An overlay is provided to to deploy the RHBK Operator, targeting version 26.2.
 
 ```
-$ oc create -k rhbk/operator/overlays/keycloak-system-24
+$ oc create -k rhbk/operator/overlays/keycloak-system-26-2
 ```
 
 Verify the Operator has been deployed successfully. You should see output similar to the below.
@@ -29,7 +29,7 @@ Verify the Operator has been deployed successfully. You should see output simila
 ```
 $ oc get csv -n keycloak-system
 NAME                               DISPLAY                    VERSION         REPLACES        PHASE
-rhbk-operator.v24.0.5-opr.1        Keycloak Operator           24.0.5-opr.1                   Succeeded
+rhbk-operator.v26.2.9-opr.1        Keycloak Operator           26.2.9-opr.1                   Succeeded
 ```
 
 ### OPTIONAL: Deploy a PostgreSQL Instance
@@ -54,13 +54,13 @@ postgres-rhbk-0   1/1     Running   0          23s
 
 Decide on if you want a persistent or ephemeral RHBK instance. Use the `keycloak-system` overlay for ephemeral, and `keycloak-system-persistent` overlay for persistent. If wanting persistence, remember to deploy the DB first.
 
-NOTE: You will need to adjust the Keycloak CR to set the correct hostname for your environment. Without this the instance will not launch successfully.
+NOTE: For both scenarios, you will need to adjust the Keycloak CR to set the correct hostname and admin URL for your environment. Without this the instance will not launch successfully.
 
 ```
   hostname:
-    hostname: keycloak.apps.ocp.example.com
+    hostname: 'https://keycloak.apps.ocp.example.com'
     strict: false
-    adminUrl: https://keycloak.apps.ocp.example.com
+    admin: 'https://keycloak.apps.ocp.example.com'
 ```
 
 ```
@@ -79,7 +79,7 @@ Discover the route and connect to your instance.
 ```
 $ oc get route -n keycloak-system
 NAME                            HOST/PORT                   PATH   SERVICES                  PORT   TERMINATION     WILDCARD
-keycloak-system-ingress-27chd   keycloak.apps.gaia.pv.lan          keycloak-system-service   http   edge/Redirect   None
+keycloak-system-ingress-27chd   keycloak.apps.example.com          keycloak-system-service   http   edge/Redirect   None
 ```
 
 RHBK automatically generates a k8s secret containing initial admin credentials to enable admins to login.
